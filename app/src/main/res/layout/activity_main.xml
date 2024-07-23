@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5EEFD"
+    android:background="@color/material_dynamic_neutral30"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
+        android:backgroundTint="@color/material_dynamic_neutral30"
         android:layout_width="match_parent"
-        android:backgroundTint="#D1E0F5"
+        app:cardElevation="8dp"
         android:layout_marginBottom="26dp"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -20,7 +21,7 @@
             android:layout_gravity="center"
             android:layout_height="wrap_content">
             <TextView
-                android:textColor="#5787FB"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="VOLUME "
@@ -40,6 +41,7 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/material_dynamic_neutral40"
             android:layout_width="match_parent"
             android:layout_marginBottom="22dp"
             app:cardCornerRadius="12dp"
@@ -66,6 +68,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_music"/>
                     <SeekBar
+                        android:id="@+id/system_sound"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -73,6 +76,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/material_dynamic_neutral40"
             android:layout_width="match_parent"
             android:layout_marginBottom="22dp"
             app:cardCornerRadius="12dp"
@@ -99,6 +103,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_boost"/>
                     <SeekBar
+                        android:id="@+id/volume_boost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -106,6 +111,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/material_dynamic_neutral40"
             android:layout_width="match_parent"
             android:layout_marginBottom="22dp"
             app:cardCornerRadius="12dp"
@@ -132,6 +138,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_bass"/>
                     <SeekBar
+                        android:id="@+id/bass_boost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
