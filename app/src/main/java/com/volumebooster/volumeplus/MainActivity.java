@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         int currVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         systemSound.setProgress(currVolume);
 
-        // Add a SeekBar.OnSeekBarChangeListener to the SeekBar
+
         systemSound.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
