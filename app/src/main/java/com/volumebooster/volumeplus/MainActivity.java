@@ -1,10 +1,10 @@
 package com.volumebooster.volumeplus;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.database.ContentObserver;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar systemSound;
     private SeekBar volBoost;
     private AudioManager audioManager;
-    private MediaPlayer mediaPlayer;
     private VolumeObserver volumeObserver;
 
     @Override
@@ -62,11 +61,6 @@ public class MainActivity extends AppCompatActivity {
         getApplicationContext().getContentResolver().registerContentObserver(
                 Settings.System.CONTENT_URI, true, volumeObserver);
 
-        // Initialize MediaPlayer
-        mediaPlayer = MediaPlayer.create(this, R.raw.sample_audio); // replace with your audio file
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
-
         // Set max range for volBoost seekbar
         volBoost.setMax(100); // Arbitrary max value for boosting effect
 
@@ -74,9 +68,10 @@ public class MainActivity extends AppCompatActivity {
         volBoost.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                // Calculate the volume based on the seekbar position
-                float volume = (float) (1 - (Math.log(100 - i) / Math.log(100)));
-                mediaPlayer.setVolume(volume, volume);
+                if (i > 50) { // Arbitrary threshold for boosting
+                    int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+                }
             }
 
             @Override
@@ -96,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         if (volumeObserver != null) {
             getApplicationContext().getContentResolver().unregisterContentObserver(volumeObserver);
-        }
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
         }
     }
 
